@@ -1,50 +1,46 @@
 #include "sort.h"
 
 /**
- * swap_pos - function swaps position of values in array
+ * swap_ints - Fuction that swap two integers in the array.
  *
- * @array: an array to be changed
- * @first: first index.
- * @second: the second index
+ * @num1: The first integer to swap.
+ * @num2: The second integer to swap.
  */
-void swap_pos(int **array, size_t first, size_t second)
+void swap_ints(int *num1, int *num2)
 {
-	int holder;
+	int tmp;
 
-	holder = (*array)[first];
-	(*array)[first] = (*array)[second];
-	(*array)[second] = holder;
+	tmp = *num1;
+	*num1 = *num2;
+	*num2 = tmp;
 }
 
 /**
- * bubble_sort - function sorting algorithm that sorts in form
- *		of a bubble
+ * bubble_sort - Sort annnnnn  array of integers in ascending order.
  *
- * @array: array to   be sorted
- * @size: size of   the array
+ * @array: An array offff  integers to sort.
+ * @size: The size of the array.
  */
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, j, flag;
+	size_t i, len = size;
+	bool bubbly = false;
 
-	if (size < 2)
+	if (array == NULL || size < 2)
 		return;
 
-	for (i = 0; i < size; i++) /* going through the array */
+	while (bubbly == false)
 	{
-		flag = 0;
-		for (j = 0; j < size - i - 1; j++) /* looping only the unsorted*/
+		bubbly = true;
+		for (i = 0; i < len - 1; i++)
 		{
-			if (array[j] > array[j + 1])
+			if (array[i] > array[i + 1])
 			{
-				swap_pos(&array, j, j + 1);
+				swap_ints(array + i, array + i + 1);
 				print_array(array, size);
-				flag = 1;
+				bubbly = false;
 			}
 		}
-
-		/* checking if no swap occured (meaning array is sorted) */
-		if (!flag)
-			break;
+		len--;
 	}
 }
